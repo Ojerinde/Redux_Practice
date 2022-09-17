@@ -1,0 +1,42 @@
+.form {
+  &__row {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+
+  &__label {
+    margin: .7rem 0;
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 0.5rem 0.7rem;
+    border-radius: 0.3rem;
+    border: 0.2rem solid transparent;
+    transition: all 0.3s;
+    color: rgb(50, 37, 39);
+    font-weight: 300;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    outline: .1rem solid rgb(249, 213, 219);
+
+    &:focus {
+      outline: none;
+      border: 0.2rem solid rgb(252, 145, 162);
+    }
+    &::placeholder {
+        color: rgba(51, 51, 51, 0.4);
+        font-weight: bold;
+    }
+    // &:valid {
+    //     border-bottom: .4rem solid rgb(3, 56, 3);
+    // }
+
+    // &:invalid {
+    //     border-bottom: .4rem solid rgb(77, 11, 11);
+    // }
+  }
+}
