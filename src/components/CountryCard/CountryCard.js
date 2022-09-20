@@ -1,5 +1,5 @@
 import { countryActions } from "../../store/country-slice";
-import { useSelector, useDispatch } from "react-redux";
+import {  useDispatch } from "react-redux";
 
 import Card from "../UI/Card/Card";
 
@@ -13,7 +13,7 @@ import { useState } from "react";
 
 const CountryCard = (props) => {
   const [shown1, setShown1] = useState(true);
-  const shown = useSelector((state) => state.shown);
+  // const shown = useSelector((state) => state.shown);
   const dispatch = useDispatch();
 
   const togglerHandler = () => {
