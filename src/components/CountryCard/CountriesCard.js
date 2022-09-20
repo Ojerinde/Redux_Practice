@@ -1,23 +1,33 @@
-import CountryCard from "./CountryCard";
+// import CountryCard from "./CountryCard";
 import "./CountriesCard.scss";
 
 import { useSelector } from "react-redux";
-
+import { lazy, Suspense } from "react";
+import Card from "../UI/Card/Card";
 const CountriesCard = () => {
   const countries = useSelector((state) => state.countries);
+  const CountryCard = lazy(() => import("./CountryCard"));
   return (
     <div className="countries__box">
       {countries.map((country, index) => (
-        <CountryCard
-          key={index}
-          capital={country.capital}
-          region={country.region}
-          area={country.area}
-          population={country.population}
-          name={country.name}
-          flag={country.flag}
-          map={country.map}
-        />
+        <Suspense
+          fallback={
+            <Card>
+              <div>Loading...</div>
+            </Card>
+          }
+        >
+          <CountryCard
+            key={index}
+            capital={country.capital}
+            region={country.region}
+            area={country.area}
+            population={country.population}
+            name={country.name}
+            flag={country.flag}
+            map={country.map}
+          />
+        </Suspense>
       ))}
     </div>
   );

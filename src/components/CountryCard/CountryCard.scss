@@ -18,6 +18,8 @@
   &__toggle {
     height: 1.7rem;
     width: 1.7rem;
+    cursor: pointer;
+
 
     &--off {
       fill: rgba(21, 18, 18, 0.978);
@@ -30,6 +32,7 @@
       height: 1.1rem;
       width: 1.1rem;
       fill: rgb(250, 92, 119);
+      cursor: pointer;
     }
   }
   &__img--box {

@@ -8,19 +8,26 @@ import { BsToggleOn } from "react-icons/bs";
 import { ImCross } from "react-icons/im";
 import "./CountryCard.scss";
 
-import myImg from '../../assets/img.jpg'
+import myImg from "../../assets/img.jpg";
+import { useState } from "react";
 
 const CountryCard = (props) => {
+  const [shown1, setShown1] = useState(true);
   const shown = useSelector((state) => state.shown);
   const dispatch = useDispatch();
 
   const togglerHandler = () => {
     dispatch(countryActions.toggle());
+    setShown1((prev) => !prev);
   };
+  const deleteHandler = () => {
+    dispatch(countryActions.removeCountry(props.name));
+  };
+
   return (
     <Card className="country__card--box">
       <div className="card__header">
-        {shown ? (
+        {shown1 ? (
           <BsToggleOn
             onClick={togglerHandler}
             className="card__toggle card__toggle--on"
@@ -31,29 +38,31 @@ const CountryCard = (props) => {
             className="card__toggle card__toggle--off"
           />
         )}
-        <ImCross className="card__toggle--delete" />
+        <ImCross onClick={deleteHandler} className="card__toggle--delete" />
       </div>
-      {shown ? (
+      {shown1 ? (
         <div>
           <figure className="card__img--box">
-            <img src={props.flag|| myImg} alt="name" className="card__img" />
+            <img src={props.flag || myImg} alt="name" className="card__img" />
           </figure>
           <div className="card__details">
-            <div className="card__details--header">{props.name || 'Ojerinde'}</div>
+            <div className="card__details--header">
+              {props.name || "Ojerinde"}
+            </div>
             <div className="card__details--body">
               <p>
-                Capital: <span>{props.capital || 'Ojerinde'}</span>
+                Capital: <span>{props.capital || "Ojerinde"}</span>
               </p>
               <p>
-                Population: <span>{props.population || 'Ojerinde'}</span>
+                Population: <span>{props.population || "Ojerinde"}</span>
               </p>
               <p>
-                Region: <span>{props.region || 'Ojerinde'}</span>
+                Region: <span>{props.region || "Ojerinde"}</span>
               </p>
               <p>
-                Area: <span>{props.area || 'Ojerinde'}</span>
+                Area: <span>{props.area || "Ojerinde"}</span>
               </p>
-              <a href={props.map || 'Ojerinde'}> Go to Google Map</a>
+              <a href={props.map || "Ojerinde"}> Go to Google Map</a>
             </div>
           </div>
         </div>

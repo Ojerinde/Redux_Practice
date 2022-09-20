@@ -5,11 +5,12 @@ import Input from "../UI/Input/Input";
 import Button from "../UI/Button/Button";
 
 import { useDispatch } from "react-redux";
-import { countryActions } from "../../store/country-slice";
+// import { countryActions } from "../../store/country-slice";
+import { fetchRequest } from "../../store/countryslice-actions";
 
 import "./Search.scss";
 const Search = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   // To set and clear the input field.
   const [inputValue, setInputValue] = useState("");
@@ -37,32 +38,33 @@ const Search = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    
+    await  dispatch(fetchRequest(inputValue.toLowerCase()));
+    // try {
+    //   const response = await fetch(
+    //     `https://restcountries.com/v3.1/name/${inputValue.toLowerCase()}`
+    //   );
 
-    try {
-      const response = await fetch(
-        `https://restcountries.com/v3.1/name/${inputValue.toLowerCase()}`
-      );
+    //   if (!response.ok) {
+    //     throw new Error('Something went wrong')
+    //   }
 
-      if (!response.ok) {
-        throw new Error('Something went wrong')
-      }
+    //   const responseBody = await response.json();
+    //   const transformedBody = {}
 
-      const responseBody = await response.json();
-      const transformedBody = {}
-      
-      transformedBody.name = responseBody[0].name.common
-      transformedBody.population = responseBody[0].population
-      transformedBody.region = responseBody[0].region 
-      transformedBody.area = responseBody[0].area
-      transformedBody.capital = responseBody[0].capital[0]
-      transformedBody.flag = responseBody[0].flags.png 
-      transformedBody.map = responseBody[0].maps.googleMaps
-      
-      dispatch(countryActions.addCountry(transformedBody))
+    //   transformedBody.name = responseBody[0].name.common
+    //   transformedBody.population = responseBody[0].population
+    //   transformedBody.region = responseBody[0].region
+    //   transformedBody.area = responseBody[0].area
+    //   transformedBody.capital = responseBody[0].capital[0]
+    //   transformedBody.flag = responseBody[0].flags.png
+    //   transformedBody.map = responseBody[0].maps.googleMaps
 
-    } catch (error) {
-      console.error(error);
-    }
+    //   dispatch(countryActions.addCountry(transformedBody))
+
+    // } catch (error) {
+    //   console.error(error);
+    // }
 
     setInputValue("");
     setIsTouched(false);
