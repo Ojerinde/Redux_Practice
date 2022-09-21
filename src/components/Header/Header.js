@@ -5,7 +5,7 @@ const Header =() => {
         <figure className='header__box'>
             <img src={myImg} alt="Joel" className='header__img'/>
         </figure>
-        <p>Countries Home</p>
+        <p>Countries Details</p>
     </header>
 }
 
