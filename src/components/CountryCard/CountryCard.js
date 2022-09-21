@@ -1,5 +1,5 @@
 import { countryActions } from "../../store/country-slice";
-import {  useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Card from "../UI/Card/Card";
 
@@ -13,15 +13,31 @@ import { useState } from "react";
 
 const CountryCard = (props) => {
   const [shown1, setShown1] = useState(true);
-  // const shown = useSelector((state) => state.shown);
+  const country = useSelector((state) => state.countries);
   const dispatch = useDispatch();
 
   const togglerHandler = () => {
     dispatch(countryActions.toggle());
     setShown1((prev) => !prev);
   };
+
   const deleteHandler = () => {
     dispatch(countryActions.removeCountry(props.name));
+    
+    const fetchData = async () => {
+      const fetchResponse = await fetch(
+        "https://react-http-joel-default-rtdb.firebaseio.com/countries.json",
+        {
+          method: "PUT",
+          body: JSON.stringify(country),
+        }
+      );
+
+      if (!fetchResponse.ok) {
+        throw new Error("Fetching failed...");
+      }
+    };
+    fetchData().catch((error) => console.log(error));
   };
 
   return (

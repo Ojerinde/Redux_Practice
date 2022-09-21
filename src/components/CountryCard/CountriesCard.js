@@ -16,6 +16,7 @@ const CountriesCard = () => {
               <div>Loading...</div>
             </Card>
           }
+          key={index}
         >
           <CountryCard
             key={index}

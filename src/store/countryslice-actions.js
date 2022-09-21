@@ -57,7 +57,6 @@ export const getCountriesFromDatabase = () => {
       for (const key in body) {
         countries.push(body[key]);
       }
-      console.log(countries)
       dispatch(countryActions.addCountry(countries));
     };
 
