@@ -4,10 +4,14 @@
 
 ## Introduction
 
-I built this site just to practice my Redux tool skill
-* I built my custom action creator object.
-* I make use of Rest Countries API.
-* I used Firebase backend to test out the async request
+Redux_Practice App is an app I built to practice my Redux tool skill after taking a course on it.
+
+In the App,
+* I used regular expression to validate the input field.(integer type is not allowed)
+* I built my custom action creator object.(I chose fat reducer above fat component)
+* I make use of Rest Countries API to fetch the searched country.
+* I used Firebase Realtime database as my backend.
+* I also put into practice React Architectural design.
 
 ## Getting Started
 
@@ -37,7 +41,7 @@ By default, the frontend will run on `localhost:3000`.
 
 
 ## Deployment
-The app is deployed on Netlify
+The app is deployed on [Netlify]("https://redux-jo-el.netlify.app/")
 
 ## Author
 Joel Ojerinde
